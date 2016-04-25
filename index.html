@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Weight of the World News</title>
-  <link rel="icon" type="image/jpg" href="http://voif.org/wp-content/uploads/2014/07/News-Briefs.png" />
+    <title>Weight of the World News</title>
+    <link rel="icon" type="image/jpg" href="http://voif.org/wp-content/uploads/2014/07/News-Briefs.png" />
 
-  <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400italic" rel="stylesheet" type="text/css">
-  <link href="./public/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400italic" rel="stylesheet" type="text/css">
+    <link href="./public/css/main.css" rel="stylesheet" type="text/css" />
 
-  <script src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
-  <script src="http://underscorejs.org/underscore-min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.min.js"></script>
 
-  <script src="js/app.js"></script>
+    <script src="js/app.js"></script>
 
 </head>
 
 <body ng-app="WorldNewsApp">
-  <header>
-    <h1>Weight of the World News</h1>
-    <div>
-      <ul><a href="#/main">Home</a></ul>
-      <ul><a href="#/interest">Interests</a></ul>
-      <ul><a href="#/saved">Saved</a></ul>
-    </div>
-  </header>
+    <header>
+        <img src="https://lh6.ggpht.com/dQRtm2IQi-73qRiQTfQtTiCU5cfnjNlBtTsi1qn0pq83pKCXR71299eMXryq89KLUtvl=w300" />
+        <h1>Weight of the World News</h1>
 
-  <main ng-view id="content"></main>
+        <div>
+            <ul><a href="#/main">Home</a></ul>
+            <ul><a href="#/interest">Interests</a></ul>
+            <ul><a href="#/saved">Saved</a></ul>
+        </div>
+    </header>
+
+    <main ng-view id="content"></main>
 
 </body>
+
 </html>
