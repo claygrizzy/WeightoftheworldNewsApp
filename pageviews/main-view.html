@@ -1,0 +1,11 @@
+<div class="page-view">
+  <h2>Breaking News Now!</h2>
+  <a href="#/main">
+    <div ng-click="current(newsNow)" ng-repeat="newsNow in breakingNews">
+      <h3 class="articleTitle"> {{ newsNow.?name? }} </h3>
+      <!-- <img -->
+      <p class="publisher">{{newsNow.?publisher?}}</p>
+      <p class="articleDescription">{{newsNow.?description}}</p>
+    </div>
+  </a>
+</div>
