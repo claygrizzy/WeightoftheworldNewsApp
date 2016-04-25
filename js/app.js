@@ -19,6 +19,12 @@ mainApp.config(['$routeProvider', function($routeProvider) {
 }]);
 
 mainApp.controller('MainViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
+    function x(y){
+        $scope.breakingNews = y;
+        console.log('the y call', y);
+    }
+    $scope.breakingNews = NewsService.fetchNews(x);
+
     console.log('Hello there');
 
 }]);
@@ -32,16 +38,18 @@ mainApp.controller('SavedViewController', ['$scope', 'NewsService', function ($s
 }]);
 
 mainApp.factory('NewsService', ['$http', function ($http) {
-    $http({
-        method: 'GET',
-        url: 'http://chat.queencityiron.com/api/news/latest',
-    }).then(function(response){
-        console.log('response', response);
-    });
+    let news = [];
+
 
     return{
-        random: function(){
-        console.log('returned correctly');
+        fetchNews: function(newsCall){
+            $http({
+                method: 'GET',
+                url: 'http://chat.queencityiron.com/api/news/latest',
+            }).then(function(response){
+                console.log('response', response.data.stories);
+                newsCall(response.data.stories);
+            });
     },
     };
 
