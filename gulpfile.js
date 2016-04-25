@@ -5,7 +5,7 @@ var ngAnnotate  = require('gulp-ng-annotate');
 var gulpBrowser = require("gulp-browser");
 var uglify      = require('gulp-uglify');
 
-gulp.task('default', ['html', 'pageviews', 'sass', 'js', 'images']);
+gulp.task('default', ['html', 'pageviews', 'css', 'js', 'images']);
 
 gulp.task('html', function() {
    return gulp.src('./*.html')
@@ -17,11 +17,9 @@ gulp.task('pageviews', function() {
       .pipe(gulp.dest('./public/pageviews'));
 });
 
-gulp.task('sass', function() {
-   return gulp.src('./scss/style.scss')
-      .pipe(sass({
-        outputStyle: 'compressed'
-      }).on('error', sass.logError))
+gulp.task('css', function() {
+   return gulp.src('./scss/main.scss')
+      .pipe(sass())
       .pipe(gulp.dest('./public/css'));
 });
 
@@ -43,6 +41,6 @@ gulp.task('images', function() {
 
 gulp.task('watch', function() {
    gulp.watch('./*html', ['html']);
-   gulp.watch('./scss/*.scss', ['sass']);
+   gulp.watch('./scss/*.scss', ['css']);
    gulp.watch('./js/*.js', ['js']);
 });
