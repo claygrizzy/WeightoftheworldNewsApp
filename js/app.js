@@ -15,11 +15,13 @@ mainApp.config(['$routeProvider', function($routeProvider) {
         .when('/saved', {
             controller: 'SavedViewController',
             templateUrl: 'pageviews/saved.html',
+        })
+        .otherwise({
+            redirectTo: '/main'
         });
 }]);
 
 mainApp.controller('MainViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
-
     function artPop(callLink){
         $scope.breakingNews = callLink;
         // console.log('the Link call', callLink);
@@ -37,13 +39,8 @@ mainApp.controller('InterestViewController', ['$scope', 'NewsService', function 
 }]);
 
 mainApp.controller('SavedViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
-    // function savedArt(y){
-    //     $scope.savedCollection = y;
-    //     console.log('the saved call', y);
-    // }
-    // $scope.savedCollection = NewsService.clickSave(savedArt);
-    $scope.savedCollection = NewsService.fetchSaved();
 
+    $scope.savedCollection = NewsService.fetchSaved();
     // console.log('saved');
 }]);
 
@@ -54,6 +51,13 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
 
     return{
         fetchNews: function(newsCall){
+            $http({
+                method: 'GET',
+                url: 'http://chat.queencityiron.com/api/news/latest',
+            }).then(function(response){
+                console.log('response', response.data.stories);
+                newsCall(response.data.stories);
+            });
             $interval(function(){
                 $http({
                     method: 'GET',
@@ -62,7 +66,8 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
                     console.log('response', response.data.stories);
                     newsCall(response.data.stories);
                 });
-            },1000);
+            },10000);
+        // }
         },
 
         clickSave: function(article){
@@ -70,7 +75,7 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
             console.log('these saved', save);
             // angular.copy(article, save);
         },
-        
+
         fetchSaved: function() {
             return save;
         }
