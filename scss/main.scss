@@ -6,12 +6,37 @@ html{
 }
 body{
   header{
-    img{
-      height: 50px;
-      width: 50px;
+    #upper{
+      @include outer-container;
+
+      img{
+        @include span-columns(3);
+        margin-top: 15px;
+        margin-left: 10px;
+        height: 100px;
+        width: 100px;
+        border-radius: 10px;
+        display:inline-block;
+      }
+
+      h1{
+        font-size: 50px;
+        display:inline-block;
+        @include span-columns(9);
+      }
     }
-    h1{
-      font-size: 50px;
+    #navbar{
+      margin-left: 0;
+      margin-right: 0;
+      background-color: yellow;
+      ul{
+        display: inline-block;
+        margin-right: 2%;
+      }
+      a{
+        text-decoration: none;
+        font-size: 25px;
+      }
     }
   }
 }
