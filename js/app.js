@@ -19,14 +19,20 @@ mainApp.config(['$routeProvider', function($routeProvider) {
 }]);
 
 mainApp.controller('MainViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
-    function x(y){
-        $scope.breakingNews = y;
-        console.log('the y call', y);
+    function artPop(callLink){
+        $scope.breakingNews = callLink;
+        console.log('the Link call', callLink);
     }
-    $scope.breakingNews = NewsService.fetchNews(x);
+    $scope.breakingNews = NewsService.fetchNews(artPop);
 
-    console.log('Hello there');
+    $scope.clickSave = function(selectedArticle){
+        console.log('Article saved');
+        NewsService.clickSave(selectedArticle);
+    };
 
+    // $scope.openStoryLink = function(story){
+    //     $window.open(`${story.link}`);
+    // };
 }]);
 
 mainApp.controller('InterestViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
@@ -34,6 +40,9 @@ mainApp.controller('InterestViewController', ['$scope', 'NewsService', function 
 }]);
 
 mainApp.controller('SavedViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
+    let savedCollection = [];
+
+
     console.log('saved');
 }]);
 
@@ -50,7 +59,10 @@ mainApp.factory('NewsService', ['$http', function ($http) {
                 console.log('response', response.data.stories);
                 newsCall(response.data.stories);
             });
-    },
+        },
+        clickSave: function(){
+            return selectedArticle;
+            }
     };
 
 }]);

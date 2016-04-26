@@ -1,12 +1,13 @@
 <div class="page-view">
-  <a href="#/main">
+
     <h2>Breaking News Now:</h2>
-    <div ng-click="current(newsNow)" ng-repeat="newsNow in breakingNews">
-      <h3 class="articleTitle"> {{ newsNow.title }} </h3>
-      <!-- <img -->
-      <!-- <p class="publisher">{{newsNow.publisher}}</p> -->
-      <p class="articleDescription">{{newsNow.description}}</p>
-      <button class="saveButton">Save</button>
-    </div>
-  </a>
+        <div ng-repeat="newsNow in breakingNews">
+        <a ng-click="current(newsNow)" href="{{ newsNow.link }}">
+          <!-- <img -->
+          <h3 class="articleTitle"> {{ newsNow.title }} </h3>
+        </a>
+          <p class="publisher">{{newsNow.published}}</p>
+          <p class="articleDescription">{{ newsNow.description }}</p>
+          <button class="saveButton">Save</button>
+        </div>
 </div>
