@@ -10,7 +10,14 @@ module.exports = (function (){
 
     return{
         fetchNews: function(newsCall){
-            //$interval(function(){
+          $http({
+              method: 'GET',
+              url: 'http://chat.queencityiron.com/api/news/latest',
+          }).then(function(response){
+              console.log('response', response.data.stories);
+              newsCall(response.data.stories);
+          });
+            $interval(function(){
                 $http({
                     method: 'GET',
                     url: 'http://chat.queencityiron.com/api/news/latest',
@@ -18,7 +25,7 @@ module.exports = (function (){
                     console.log('response', response.data.stories);
                     newsCall(response.data.stories);
                 });
-            //},100000);
+            },100000);
         },
 
         clickSave: function(article){
