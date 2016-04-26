@@ -1,1 +1,3 @@
 # WeightoftheworldNewsApp
+
+python -m SimpleHTTPServer 
