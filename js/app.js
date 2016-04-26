@@ -33,71 +33,15 @@ mainApp.controller('MainViewController', ['$scope', 'NewsService', function ($sc
 }]);
 
 mainApp.controller('InterestViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
-    $scope.anInterest = NewsService.myInterests();
 
-    //console.log();
+    $scope.addNewInterest = function() {
+        NewsService.addInterest(document.getElementById('input').value);
+    };
+
 }]);
 
 mainApp.controller('SavedViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
 
     $scope.savedCollection = NewsService.fetchSaved();
-
-}]);
-
-mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval) {
-    let news = [];
-    let save = [];
-    let interests = [];
-
-    return{
-        fetchNews: function(newsCall){
-            $http({
-                method: 'GET',
-                url: 'http://chat.queencityiron.com/api/news/latest',
-            }).then(function(response){
-                console.log('response', response.data.stories);
-                newsCall(response.data.stories);
-            });
-            $interval(function(){
-                $http({
-                    method: 'GET',
-                    url: 'http://chat.queencityiron.com/api/news/latest',
-                }).then(function(response){
-                    console.log('response', response.data.stories);
-                    newsCall(response.data.stories);
-                });
-            },10000);
-        },
-
-        clickSave: function(article){
-            save.push(article);
-            console.log('these saved', save);
-            // angular.copy(article, save);
-        },
-
-        fetchSaved: function() {
-            return save;
-        },
-        addInterest: function (china) {
-            //interestingToMe(interest);
-            interests.push(china);
-            console.log(china + 'was added to your interests array');
-
-            //console.log(interest);
-        },
-
-        interestingToMe: function () {
-            let china = document.getElementById('input').value;
-            //interests.push(interest);
-            return china;
-            //console.log(interest + 'was added to your interests array');
-
-        },
-        myInterests: function () {
-            console.log(interests);
-            return interests;
-        }
-
-    };
 
 }]);
