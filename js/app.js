@@ -21,18 +21,14 @@ mainApp.config(['$routeProvider', function($routeProvider) {
 mainApp.controller('MainViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
     function artPop(callLink){
         $scope.breakingNews = callLink;
-        console.log('the Link call', callLink);
+        // console.log('the Link call', callLink);
     }
     $scope.breakingNews = NewsService.fetchNews(artPop);
 
     $scope.clickSave = function(selectedArticle){
-        console.log('Article saved');
+        // console.log('Article saved');
         NewsService.clickSave(selectedArticle);
     };
-
-    // $scope.openStoryLink = function(story){
-    //     $window.open(`${story.link}`);
-    // };
 }]);
 
 mainApp.controller('InterestViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
@@ -40,14 +36,19 @@ mainApp.controller('InterestViewController', ['$scope', 'NewsService', function 
 }]);
 
 mainApp.controller('SavedViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
-    let savedCollection = [];
+    // function savedArt(y){
+    //     $scope.savedCollection = y;
+    //     console.log('the saved call', y);
+    // }
+    // $scope.savedCollection = NewsService.clickSave(savedArt);
+    $scope.savedCollection = NewsService.fetchSaved();
 
-
-    console.log('saved');
+    // console.log('saved');
 }]);
 
 mainApp.factory('NewsService', ['$http', function ($http) {
     let news = [];
+    let save = [];
 
 
     return{
@@ -60,9 +61,14 @@ mainApp.factory('NewsService', ['$http', function ($http) {
                 newsCall(response.data.stories);
             });
         },
-        clickSave: function(){
-            return selectedArticle;
-            }
+        clickSave: function(article){
+            save.push(article);
+            console.log('these saved', save);
+            // angular.copy(article, save);
+        },
+        fetchSaved: function() {
+            return save;
+        }
     };
 
 }]);
