@@ -53,7 +53,14 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
 
     return{
         fetchNews: function(newsCall){
-            //$interval(function(){
+            $http({
+                    method: 'GET',
+                    url: 'http://chat.queencityiron.com/api/news/latest',
+                }).then(function(response){
+                    console.log('response', response.data.stories);
+                    newsCall(response.data.stories);
+                });
+            $interval(function(){
                 $http({
                     method: 'GET',
                     url: 'http://chat.queencityiron.com/api/news/latest',
@@ -61,7 +68,7 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
                     console.log('response', response.data.stories);
                     newsCall(response.data.stories);
                 });
-            //},100000);
+            },100000);
         },
 
         clickSave: function(article){
