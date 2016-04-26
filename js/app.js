@@ -15,9 +15,6 @@ mainApp.config(['$routeProvider', function($routeProvider) {
         .when('/saved', {
             controller: 'SavedViewController',
             templateUrl: 'pageviews/saved.html',
-        })
-        .otherwise({
-            redirectTo: '/main'
         });
 }]);
 
@@ -35,19 +32,21 @@ mainApp.controller('MainViewController', ['$scope', 'NewsService', function ($sc
 }]);
 
 mainApp.controller('InterestViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
-    console.log('interest');
+    $scope.anInterest = NewsService.myInterests();
+
+    //console.log();
 }]);
 
 mainApp.controller('SavedViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
 
     $scope.savedCollection = NewsService.fetchSaved();
-    // console.log('saved');
+
 }]);
 
 mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval) {
     let news = [];
     let save = [];
-
+    let interests = [];
 
     return{
         fetchNews: function(newsCall){
@@ -66,7 +65,7 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
                     console.log('response', response.data.stories);
                     newsCall(response.data.stories);
                 });
-            },10000);
+            },1000);
         // }
         },
 
@@ -78,7 +77,27 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
 
         fetchSaved: function() {
             return save;
+        },
+        addInterest: function (china) {
+            //interestingToMe(interest);
+            interests.push(china);
+            console.log(china + 'was added to your interests array');
+
+            //console.log(interest);
+        },
+
+        interestingToMe: function () {
+            let china = document.getElementById('input').value;
+            //interests.push(interest);
+            return china;
+            //console.log(interest + 'was added to your interests array');
+
+        },
+        myInterests: function () {
+            console.log(interests);
+            return interests;
         }
+
     };
 
 }]);
