@@ -1,11 +1,12 @@
 <div class="page-view">
-  <a href="#/saved">
 
-    <div ng-click="current(newsNow)" ng-repeat="savedNews in savedCollection">
+    <div ng-repeat="savedNews in savedCollection">
+      <a ng-click="current(newsNow)" href="{{ savedNews.link }}" >
       <h3 class="articleTitle"> {{ savedNews.title }} </h3>
+    </a>
+
       <!-- <img -->
       <p class="publisher">{{ savedNews.published }}</p>
       <!-- <p class="articleDescription">{{savedNews.description}}</p> -->
     </div>
-  </a>
 </div>
