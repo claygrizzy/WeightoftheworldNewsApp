@@ -34,12 +34,12 @@ mainApp.controller('MainViewController', ['$scope', 'NewsService', function ($sc
 
 mainApp.controller('InterestViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
     $scope.anInterest = NewsService.myInterests();
-    
+
     //console.log();
 }]);
 
 mainApp.controller('SavedViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
-    
+
     $scope.savedCollection = NewsService.fetchSaved();
 
 }]);
@@ -51,6 +51,13 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
 
     return{
         fetchNews: function(newsCall){
+            $http({
+                method: 'GET',
+                url: 'http://chat.queencityiron.com/api/news/latest',
+            }).then(function(response){
+                console.log('response', response.data.stories);
+                newsCall(response.data.stories);
+            });
             $interval(function(){
                 $http({
                     method: 'GET',
@@ -59,7 +66,7 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
                     console.log('response', response.data.stories);
                     newsCall(response.data.stories);
                 });
-            },1000);
+            },10000);
         },
 
         clickSave: function(article){
@@ -67,7 +74,7 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
             console.log('these saved', save);
             // angular.copy(article, save);
         },
-        
+
         fetchSaved: function() {
             return save;
         },
@@ -75,22 +82,22 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
             //interestingToMe(interest);
             interests.push(china);
             console.log(china + 'was added to your interests array');
-            
+
             //console.log(interest);
         },
-                
-        interestingToMe: function () {    
+
+        interestingToMe: function () {
             let china = document.getElementById('input').value;
             //interests.push(interest);
             return china;
             //console.log(interest + 'was added to your interests array');
-            
+
         },
         myInterests: function () {
             console.log(interests);
             return interests;
         }
-        
+
     };
 
 }]);
