@@ -1,9 +1,11 @@
 <div class="page-view">
-  <a href="#/interest">
+  
     <h2>Search Your Interests</h2>
-    <input type="text" ng-model="newsNow.title" />
-    <ul id="interestList">
-      <li class="savedInputs"></li>
+    <input type="text" autofocus="true" name="input" ng-model="interest" id="input"/>
+    <button type="button" ng-click="addInterest(china)" id="submit">Submit</button>
+    <a href="#/interest">
+    <ul ng-repeat="interests in myInterests" id="interestList">        
+        <li class="savedInputs"></li>       
     </ul>
-  </a>
+    </a>
 </div>
