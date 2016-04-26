@@ -32,24 +32,21 @@ mainApp.controller('MainViewController', ['$scope', 'NewsService', function ($sc
 }]);
 
 mainApp.controller('InterestViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
-    console.log('interest');
+    $scope.anInterest = NewsService.myInterests();
+    
+    //console.log();
 }]);
 
 mainApp.controller('SavedViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
-    // function savedArt(y){
-    //     $scope.savedCollection = y;
-    //     console.log('the saved call', y);
-    // }
-    // $scope.savedCollection = NewsService.clickSave(savedArt);
+    
     $scope.savedCollection = NewsService.fetchSaved();
 
-    // console.log('saved');
 }]);
 
 mainApp.factory('NewsService', ['$http', function ($http) {
     let news = [];
     let save = [];
-
+    let interests = [];
 
     return{
         fetchNews: function(newsCall){
@@ -68,7 +65,27 @@ mainApp.factory('NewsService', ['$http', function ($http) {
         },
         fetchSaved: function() {
             return save;
+        },
+        addInterest: function (china) {
+            //interestingToMe(interest);
+            interests.push(china);
+            console.log(china + 'was added to your interests array');
+            
+            //console.log(interest);
+        },
+                
+        interestingToMe: function () {    
+            let china = document.getElementById('input').value;
+            //interests.push(interest);
+            return china;
+            //console.log(interest + 'was added to your interests array');
+            
+        },
+        myInterests: function () {
+            console.log(interests);
+            return interests;
         }
+        
     };
 
 }]);
