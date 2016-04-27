@@ -24,7 +24,6 @@ mainApp.controller('MainViewController', ['$scope', 'NewsService', function ($sc
         $scope.breakingNews = callLink;
         // console.log('the Link call', callLink);
     }
-    $scope.breakingNews = NewsService.fetchNews(artPop);
 
     $scope.clickSave = function(selectedArticle){
         // console.log('Article saved');
@@ -36,6 +35,11 @@ mainApp.controller('InterestViewController', ['$scope', 'NewsService', function 
 
     $scope.addNewInterest = function() {
         NewsService.addInterest(document.getElementById('input').value);
+    };
+    $scope.myInterests = NewsService.myInterests();
+    
+    $scope.removeThisInterest = function (interest) {
+        NewsService.removeInterest(interest);
     };
     
 }]);
@@ -81,14 +85,24 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
             return save;
         },
         addInterest: function (interest) {
+            interest = interest.toLowerCase();
+            console.log(interest);
             interests.push(interest);
-            //console.log(interest + ' was added to your interests array');
-            console.log(interests);   
+            console.log(interests);
         },
         
         myInterests: function () {
             console.log(interests);
             return interests;
+        },
+        
+        removeInterest: function (interest) {
+            console.log(interest);
+            function clear(value) {
+                return value !== interest;
+            }
+            angular.copy(interests.filter(clear), interests);
+            console.log(interests);
         }
         
     };
