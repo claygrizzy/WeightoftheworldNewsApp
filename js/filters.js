@@ -1,7 +1,7 @@
 /* jslint browser: true, esnext: true */
-
-module.exports = (function (){
-  var filters = angular.module('FilterService', []);
-
-  
-});
+//
+// module.exports = (function (){
+//   var filters = angular.module('FilterService', []);
+//
+//
+// });
