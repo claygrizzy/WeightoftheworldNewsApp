@@ -37,15 +37,15 @@ mainApp.controller('InterestViewController', ['$scope', 'NewsService', function 
         NewsService.addInterest(document.getElementById('input').value);
     };
     $scope.myInterests = NewsService.myInterests();
-    
+
     $scope.removeThisInterest = function (interest) {
         NewsService.removeInterest(interest);
     };
-    
+
 }]);
 
 mainApp.controller('SavedViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
-    
+
     $scope.savedCollection = NewsService.fetchSaved();
 
 }]);
@@ -80,7 +80,7 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
             console.log('these saved', save);
             // angular.copy(article, save);
         },
-        
+
         fetchSaved: function() {
             return save;
         },
@@ -90,12 +90,12 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
             interests.push(interest);
             console.log(interests);
         },
-        
+
         myInterests: function () {
             console.log(interests);
             return interests;
         },
-        
+
         removeInterest: function (interest) {
             console.log(interest);
             function clear(value) {
@@ -104,7 +104,7 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
             angular.copy(interests.filter(clear), interests);
             console.log(interests);
         }
-        
+
     };
 
 }]);
