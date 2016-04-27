@@ -27,7 +27,6 @@ mainApp.controller('MainViewController', ['$scope', 'NewsService', function ($sc
         $scope.breakingNews = callLink;
         // console.log('the Link call', callLink);
     }
-
     // $scope.breakingNews.published = $moment("20111031", "YYYYMMDD").fromNow();
     $scope.breakingNews = NewsService.fetchNews(artPop);
 
@@ -42,6 +41,7 @@ mainApp.controller('InterestViewController', ['$scope', 'NewsService', function 
     $scope.addNewInterest = function() {
         NewsService.addInterest(document.getElementById('input').value);
     };
+
     $scope.myInterests = NewsService.myInterests();
 
     $scope.removeThisInterest = function (interest) {
