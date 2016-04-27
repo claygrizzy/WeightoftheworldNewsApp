@@ -39,7 +39,8 @@ mainApp.controller('InterestViewController', ['$scope', 'NewsService', function 
     };
     $scope.myInterests = NewsService.myInterests();
     $scope.removeThisInterest = function () {
-        NewsService.toBeRemoved(document.getElementById('interest-value').innerHTML);
+        NewsService.removeInterest(document.getElementById('interest-value').innerHTML);
+        //$scope.myInterests = NewsService.myInterests();
     };
     
 }]);
@@ -98,14 +99,11 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
         },
         
         removeInterest: function (interest) {
-            console.log(interest);
-            
-        },
-        
-        toBeRemoved: function (interest) {
-
-            //interests.filter(function (interest) {})
-            console.log(interest);
+            function clear(value) {
+                return value !== interest;
+            }
+            interests = interests.filter(clear);
+            console.log(interests);
         }
         
     };
