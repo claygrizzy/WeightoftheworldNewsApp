@@ -1,7 +1,7 @@
 /* jslint browser: true, esnext: true */
 
 require('./newsFactory');
-// require('./filters');
+require('./filters');
 
 let mainApp = angular.module('WorldNewsApp', ['ngRoute', 'NewsService']);
 

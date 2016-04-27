@@ -1,7 +1,7 @@
 <div class="page-view">
 
     <h2>Breaking News Now:</h2>
-        <div ng-repeat="newsNow in breakingNews">
+        <div ng-repeat="newsNow in breakingNews | orderBy:'-'">
         <a ng-click="current(newsNow)" href="{{ newsNow.link }}">
           <!-- <img -->
           <h3 class="articleTitle"> {{ newsNow.title }} </h3>
