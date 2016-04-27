@@ -1,9 +1,9 @@
 /* jslint browser: true, esnext: true */
 
 module.exports = (function (){
-  var factory = angular.module('NewsService', []);
+var service = angular.module('NewsService', []);
 
-  factory.factory('NewsService', ['$http', '$interval', function ($http, $interval) {
+  service.factory('NewsService', ['$http', '$interval', function ($http, $interval) {
     let news = [];
     let save = [];
     let interests = [];
@@ -50,5 +50,5 @@ module.exports = (function (){
 
     };
 
-}])();
-});
+}]);
+}());

@@ -1,6 +1,8 @@
 /* jslint browser: true, esnext: true */
 
-let mainApp = angular.module('WorldNewsApp', ['ngRoute']);
+require('./newsFactory');
+
+let mainApp = angular.module('WorldNewsApp', ['ngRoute', 'NewsService']);
 
 mainApp.config(['$routeProvider', function($routeProvider) {
     $routeProvider
