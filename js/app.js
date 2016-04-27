@@ -23,13 +23,15 @@ mainApp.config(['$routeProvider', function($routeProvider) {
 
 mainApp.controller('MainViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
 
-    function artPop(callLink){
-        $scope.breakingNews = callLink;
-        // console.log('the Link call', callLink);
-    }
+//    function artPop(callLink){
+//        $scope.breakingNews = callLink;
+//        // console.log('the Link call', callLink);
+//    }
     // $scope.breakingNews.published = $moment("20111031", "YYYYMMDD").fromNow();
-    $scope.breakingNews = NewsService.fetchNews(artPop);
-
+    NewsService.fetchNews();
+    NewsService.getNews();
+    $scope.breakingNews = NewsService.getNews();
+    
     $scope.clickSave = function(selectedArticle){
         // console.log('Article saved');
         NewsService.clickSave(selectedArticle);

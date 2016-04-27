@@ -9,13 +9,15 @@ var service = angular.module('NewsService', []);
     let interests = [];
 
     return{
-        fetchNews: function(newsCall){
+        fetchNews: function(/*newsCall*/){
           $http({
               method: 'GET',
               url: 'http://chat.queencityiron.com/api/news/latest',
           }).then(function(response){
-              console.log('response', response.data.stories);
-              newsCall(response.data.stories);
+              //console.log('response', response.data.stories);
+              angular.copy(response.data.stories, news);
+              console.log('this is the news array', news);
+              //newsCall(response.data.stories);
           });
             $interval(function(){
                 $http({
@@ -23,9 +25,23 @@ var service = angular.module('NewsService', []);
                     url: 'http://chat.queencityiron.com/api/news/latest',
                 }).then(function(response){
                     console.log('response', response.data.stories);
-                    newsCall(response.data.stories);
+                    angular.copy(response.data.stories, news);
+                    console.log('this is the NEW news array', news);
+//                    if (news.length !== response.data.stories.length){
+//                        for (let i = 0; i < response.data.stories.length; i++) {
+//                            if (response.data.stories[i] !== news[i]) {
+//                                news.pop(response.data.stories[i]);
+//                            }
+//                            console.log(news);
+//                        }
+//                    }
+                    //newsCall(response.data.stories);
                 });
-            },100000);
+            },10000);
+        },
+        
+        getNews: function () {
+            return news;
         },
 
         clickSave: function(article){
@@ -41,6 +57,10 @@ var service = angular.module('NewsService', []);
             interests.push(interest);
             //console.log(interest + ' was added to your interests array');
             console.log(interests);
+        },
+        
+        flagInterests: function () {
+            console.log('flagged');
         },
 
         myInterests: function () {
