@@ -3,7 +3,7 @@
 require('./newsFactory');
 // require('./filters');
 
-let mainApp = angular.module('WorldNewsApp', ['ngRoute', 'NewsService', 'FilterService']);
+let mainApp = angular.module('WorldNewsApp', ['ngRoute', 'NewsService']);
 
 mainApp.config(['$routeProvider', function($routeProvider) {
     $routeProvider

@@ -46,6 +46,15 @@ var service = angular.module('NewsService', []);
         myInterests: function () {
             console.log(interests);
             return interests;
+        },
+
+        removeInterest: function (interest) {
+            console.log(interest);
+            function clear(value) {
+                return value !== interest;
+            }
+            angular.copy(interests.filter(clear), interests);
+            console.log(interests);
         }
 
     };
