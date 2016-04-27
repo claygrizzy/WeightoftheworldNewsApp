@@ -37,6 +37,10 @@ mainApp.controller('InterestViewController', ['$scope', 'NewsService', function 
     $scope.addNewInterest = function() {
         NewsService.addInterest(document.getElementById('input').value);
     };
+    $scope.myInterests = NewsService.myInterests();
+    $scope.removeThisInterest = function () {
+        NewsService.removeInterest();
+    };
     
 }]);
 
@@ -83,13 +87,18 @@ mainApp.factory('NewsService', ['$http', '$interval', function ($http, $interval
         addInterest: function (interest) {
             interests.push(interest);
             //console.log(interest + ' was added to your interests array');
-            console.log(interests);   
+            console.log(interests);
         },
         
         myInterests: function () {
             console.log(interests);
             return interests;
-        }
+        },
+        
+        removeInterest: function () {
+            var value = document.getElementById('interest-value');
+            console.log(value.innerHTML);
+        },
         
     };
 
