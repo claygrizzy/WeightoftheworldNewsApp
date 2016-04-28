@@ -1,7 +1,10 @@
 /* jslint browser: true, esnext: true */
 
+var moment = require('moment');
+
 require('./newsFactory');
-// require('./filters');
+require('./filters');
+
 
 let mainApp = angular.module('WorldNewsApp', ['ngRoute', 'NewsService']);
 
@@ -55,3 +58,9 @@ mainApp.controller('SavedViewController', ['$scope', 'NewsService', function ($s
     $scope.savedCollection = NewsService.fetchSaved();
 
 }]);
+
+mainApp.filter('fromNow', function(){
+return function(date){
+  return moment(date).fromNow();
+};
+});

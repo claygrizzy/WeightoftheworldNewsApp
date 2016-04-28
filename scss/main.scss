@@ -56,12 +56,12 @@ body{
     .newsStoryRepeat{
       border: 2px solid;
       border-radius: 5px;
-      text-decoration: none;
       padding-left: 2%;
       padding-top: 1%;
-      h3{
+      .articleTitle{
         text-transform: uppercase;
         text-decoration: none;
+        color: red;
       }
     }
   }

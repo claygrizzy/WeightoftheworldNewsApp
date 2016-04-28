@@ -1,6 +1,5 @@
 /* jslint browser: true, esnext: true */
 
-var moment = require('moment');
 module.exports = (function (){
 var service = angular.module('NewsService', []);
 
@@ -25,6 +24,9 @@ var service = angular.module('NewsService', []);
                 }).then(function(response){
                     console.log('response', response.data.stories);
                     newsCall(response.data.stories);
+                    for(var i = 0; i < response.lenth; i++){
+                      moment(response[i].published).fromNow();
+                    }
                 });
             },100000);
         },
