@@ -9,7 +9,7 @@ body{
 
   header{
     #upper{
-
+      border-bottom: 10px solid;
       img{
         margin-top: 10px;
         margin-left: 10px;
@@ -22,7 +22,7 @@ body{
 
       h1{
         margin-left: 20%;
-        font-size: 45px;
+        font-size: 50px;
         display:inline-block;
         text-align: center;
       }
@@ -51,7 +51,7 @@ body{
   //Main view setup
   #mainpage{
     h2{
-      font-size: 35px;
+      font-size: 30px;
       text-align: center;
       text-transform: uppercase;
     }
