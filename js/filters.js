@@ -1,6 +1,7 @@
 /* jslint browser: true, esnext: true */
 
 module.exports = (function (){
+  let moment = require('moment');
   var filters = angular.module('FilterService', []);
 
   filters.filter('fromNow', function(){
@@ -9,4 +10,4 @@ module.exports = (function (){
     };
   });
 
-});
+})();
