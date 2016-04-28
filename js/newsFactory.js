@@ -7,6 +7,7 @@ module.exports = (function () {
     service.factory('NewsService', ['$http', '$interval', function ($http, $interval) {
         let news = [];
         let newsIDs = [];
+        let newsTitles = [];
         let save = [];
         let interests = [];
 
@@ -19,9 +20,13 @@ module.exports = (function () {
                     for (let i = 0; i < response.data.stories.length; i++) {
                         newsIDs.push(response.data.stories[i].id);
                     }
+                    for (let i = 0; i < response.data.stories.length; i++) {
+                        newsTitles.push(response.data.stories[i].title);
+                    }
                     angular.copy(response.data.stories, news);
-                    console.log(news);
-                    console.log(newsIDs);
+                    //console.log(news);
+                    //console.log(newsIDs);
+                    //console.log(newsTitles);
                 });
                 $interval(function () {
                     $http({
@@ -30,12 +35,13 @@ module.exports = (function () {
                     }).then(function (response) {
                         for (let i = 0; i < response.data.stories.length; i++) {
                             if (newsIDs.includes(response.data.stories[i].id) === false) {
-                                newsIDs.push(response.data.stories[i].id);
                                 news.push(response.data.stories[i]);
+                                newsIDs.push(response.data.stories[i].id);
+                                newsTitles.push(response.data.stories[i].title);
                             }
                         }
-                        console.log(news);
-                        console.log(newsIDs);
+                        //console.log(news);
+                        //console.log(newsIDs);
                     });
                 }, 10000);
             },

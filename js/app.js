@@ -44,6 +44,8 @@ mainApp.controller('InterestViewController', ['$scope', 'NewsService', function 
     };
 
     $scope.myInterests = NewsService.myInterests();
+    
+    
 
     $scope.removeThisInterest = function (interest) {
         NewsService.removeInterest(interest);
@@ -57,8 +59,8 @@ mainApp.controller('SavedViewController', ['$scope', 'NewsService', function ($s
 
 }]);
 
-mainApp.filter('fromNow', function(){
-return function(date){
-  return moment(date).fromNow();
-};
+mainApp.filter('fromNow', function () {
+    return function (date) {
+        return moment(date).fromNow();
+    };
 });
