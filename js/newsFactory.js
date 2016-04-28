@@ -28,7 +28,7 @@ var service = angular.module('NewsService', []);
                       moment(response[i].published).fromNow();
                     }
                 });
-            },100000);
+            },10000);
         },
 
         clickSave: function(article){

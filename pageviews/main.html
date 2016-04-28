@@ -2,10 +2,10 @@
 
     <h2>Breaking News Now:</h2>
         <div class="newsStoryRepeat" ng-repeat="newsNow in breakingNews | orderBy:'-'">
-        <a ng-click="current(newsNow)" href="{{ newsNow.link }}">
-          <!-- <img -->
-          <h3 class="articleTitle"> {{ newsNow.title }} </h3>
-        </a>
+            <a ng-click="current(newsNow)" href="{{ newsNow.link }}">
+              <!-- <img -->
+              <h3 class="articleTitle"> {{ newsNow.title }} </h3>
+            </a>
           <p class="published">{{ newsNow.published | fromNow }}</p>
           <p class="articleDescription">{{ newsNow.description }}</p>
           <button ng-click="clickSave(newsNow)" class="clickSave" >Save</button>
