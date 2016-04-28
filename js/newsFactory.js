@@ -1,5 +1,6 @@
 /* jslint browser: true, esnext: true */
 
+var moment = require('moment');
 module.exports = (function (){
 var service = angular.module('NewsService', []);
 

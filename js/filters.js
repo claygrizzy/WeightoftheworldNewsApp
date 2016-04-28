@@ -3,5 +3,6 @@
 // module.exports = (function (){
 //   var filters = angular.module('FilterService', []);
 //
+//   filters.
 //
 // });

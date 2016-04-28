@@ -11,7 +11,7 @@ body{
 
       img{
         @include span-columns(3);
-        margin-top: 15px;
+        margin-top: 5%;
         margin-left: 10px;
         height: 100px;
         width: 100px;
@@ -36,6 +36,32 @@ body{
       a{
         text-decoration: none;
         font-size: 25px;
+      }
+      a:hover{
+        color: blue;
+        text-decoration: none;
+      }
+    }
+  }
+  .page-view{
+    margin: 5%;
+  }
+  //Main view setup
+  #mainpage{
+    h2{
+      font-size: 35px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .newsStoryRepeat{
+      border: 2px solid;
+      border-radius: 5px;
+      text-decoration: none;
+      padding-left: 2%;
+      padding-top: 1%;
+      h3{
+        text-transform: uppercase;
+        text-decoration: none;
       }
     }
   }
