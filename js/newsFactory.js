@@ -39,7 +39,7 @@ module.exports = (function () {
                     });
                 }, 10000);
             },
-            
+
             getNewsIDs: function () {
                 for (let i = 0; i < news.length; i++) {
                     newsIDs.push(news.id[i]);
@@ -59,7 +59,7 @@ module.exports = (function () {
             fetchSaved: function () {
                 return save;
             },
-            
+
             addInterest: function (interest) {
                 interests.push(interest);
                 console.log(interests);
