@@ -1,5 +1,4 @@
 /* jslint browser: true, esnext: true */
-let moment = require('moment');
 
 module.exports = (function () {
     var service = angular.module('NewsService', []);
@@ -45,7 +44,7 @@ module.exports = (function () {
                         //console.log(news);
                         //console.log(newsIDs);
                     });
-                }, 10000);
+                }, 100000);
             },
 
             getNewsIDs: function () {
