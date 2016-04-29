@@ -1,6 +1,9 @@
 @import "bourbon/bourbon";
 @import "neat/neat";
 
+.hidden{
+  display: none;
+}
 html{
   background-color: lightgrey;
 }
@@ -8,64 +11,78 @@ body{
   margin: 0;
 
   header{
-    #upper{
+      width: 100%;
       border-bottom: 10px purple solid;
-      img{
-        margin-top: 10px;
-        margin-left: 10px;
-        height: 100px;
-        width: 100px;
-        border-radius: 10px;
-        position: absolute;
-        float: left;
-      }
+      margin-bottom: 2%;
+      @include outer-container;
+      #upper{
+        margin-top: 2%;
 
-      h1{
-        margin-left: 20%;
-        font-size: 50px;
-        display:inline-block;
-        text-align: center;
+        img{
+          @include span-columns(3);
+          margin-left: 10px;
+          width: 15vw;
+          border-radius: 10px;
+          margin-left: 10px;
+          }
+        h1{
+          @include span-columns(8);
+          font-size: 5vw;
+          text-align: center;
+        }
       }
     }
     #navbar{
       margin-left: 0;
       margin-right: 0;
-      background-color: yellow;
+      background-color: #05006b;
+      color: pink;
       ul{
         display: inline-block;
         padding-right: 1%;
+        font-size: 15px;
       }
       a{
         text-decoration: none;
-        font-size: 20px;
+      }
+      a:visited{
+        color: pink;
       }
       a:hover{
-        color: blue;
+        color: yellow;
         text-decoration: none;
       }
     }
-  }
   .page-view{
     margin: 5%;
   }
   //Main view setup
   #mainpage{
     h2{
-      font-size: 30px;
+      font-size: 4vw;
       text-align: center;
       text-transform: uppercase;
     }
+    #scrollboxdisplay{
+      border: 1px solid pink;
+      display: flex;
+      flex-wrap: wrap;
+      height: 500px;
+      // margin: 0% 10%;
+      justify-content: space-around;
+      overflow: auto;
+    }
     .newsStoryRepeat{
+      width: 100%;
       border: 2px solid;
       border-radius: 5px;
-      padding-left: 2%;
-      padding-top: 1%;
+      margin-bottom: 1%;
       a{
         text-decoration: none;
       }
       .articleTitle{
         text-transform: uppercase;
-        color: blue;
+        color: #0477b8;
       }
     }
   }
