@@ -21,6 +21,8 @@ module.exports = (function () {
                         newsIDs.push(response.data.stories[i].id);
                     }
                     for (let i = 0; i < response.data.stories.length; i++) {
+                        response.data.stories[i].title = response.data.stories[i].title.toLowerCase();
+                        console.log(response.data.stories[i].title);
                         newsTitles.push(response.data.stories[i].title);
                     }
                     angular.copy(response.data.stories, news);
@@ -67,6 +69,7 @@ module.exports = (function () {
             },
 
             addInterest: function (interest) {
+                interest = interest.toLowerCase();
                 interests.push(interest);
                 console.log(interests);
             },
