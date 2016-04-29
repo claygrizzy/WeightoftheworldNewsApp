@@ -21,7 +21,7 @@ module.exports = (function () {
                     }
                     for (let i = 0; i < response.data.stories.length; i++) {
                         response.data.stories[i].title = response.data.stories[i].title.toLowerCase();
-                        console.log(response.data.stories[i].title);
+                        // console.log(response.data.stories[i].title);
                         newsTitles.push(response.data.stories[i].title);
                     }
                     angular.copy(response.data.stories, news);
@@ -49,11 +49,12 @@ module.exports = (function () {
 
             getNewsIDs: function () {
                 for (let i = 0; i < news.length; i++) {
-                    newsIDs.push(news.id[i]);
+                    newsIDs.push(news[i].id);
                 }
+                console.log(newsIDs);
+
                 return newsIDs;
             },
-
             getNews: function () {
                 return news;
             },
