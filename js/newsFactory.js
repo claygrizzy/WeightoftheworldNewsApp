@@ -3,6 +3,17 @@
 module.exports = (function () {
     var service = angular.module('NewsService', []);
 
+    let Firebase = require('firebase');
+    let fireRequest = new Firebase('https://weightoftheworldnews.firebaseio.com/');
+
+    function Article(title, id, published){
+        this.title = title;
+        this.id = id;
+        this.published = published;
+
+        return this;
+    }
+
     service.factory('NewsService', ['$http', '$interval', function ($http, $interval) {
         let news = [];
         let newsIDs = [];
@@ -11,6 +22,7 @@ module.exports = (function () {
         let interests = [];
 //        let common = [];
 //        let notCommon = [];
+
 
         return {
             fetchNews: function () {
@@ -23,7 +35,8 @@ module.exports = (function () {
                     }
                     for (let i = 0; i < response.data.stories.length; i++) {
                         response.data.stories[i].title = response.data.stories[i].title.toLowerCase();
-                        //console.log(response.data.stories[i].title);
+
+                        // console.log(response.data.stories[i].title);
                         newsTitles.push(response.data.stories[i].title);
                     }
                     angular.copy(response.data.stories, news);
@@ -52,11 +65,11 @@ module.exports = (function () {
             getNews: function () {
                 return news;
             },
-            
+
             getTitles: function () {
                 return newsTitles;
             },
-            
+
             getInterests: function () {
                 return interests;
             },
@@ -64,10 +77,27 @@ module.exports = (function () {
             clickSave: function (article) {
                 save.push(article);
                 console.log('these saved', save);
-            },
+                // save.push(article);
+                // console.log('these saved', save);
+                let title = article.title;
+                let id = article.id;
+                let published = article.published;
+
+                var savedArticle = new Article(title, id, published);
+                console.log(savedArticle);
+                var articleToSave = new Firebase('https://weightoftheworldnews.firebaseio.com/saved/' + savedArticle.id);
+                articleToSave.set(savedArticle, function(){
+                    console.log('New article saved');
+                });
+                },
 
             fetchSaved: function () {
-                return save;
+                let firePull = new Firebase('https://weightoftheworldnews.firebaseio.com/saved/');
+                firePull.once('value', function(bringThemIn){
+                    console.log(bringThemIn.val());
+                    return(bringThemIn.val());
+                });
+
             },
 
             addInterest: function (interest) {
@@ -75,7 +105,7 @@ module.exports = (function () {
                 interests.push(interest);
                 console.log(interests);
                 console.log(interest);
-                
+
                 //return interest;
             },
 
@@ -122,7 +152,7 @@ module.exports = (function () {
 //             document.getElementById(id).setAttribute('hidden');
 //             */
 ////             notCommon.push(newsTitles[i]);
-//                
+//
 //         }
 ////         console.log(common);
 ////         console.log(notCommon);

@@ -1,8 +1,8 @@
 <div class="page-view" id="mainpage">
-
     <h2>Breaking News Now:</h2>
-        <div id="scrollboxdisplay">
+    <div id="scrollboxdisplay">
         <div class="newsStoryRepeat" ng-repeat="newsNow in breakingNews | orderBy:'-'">
+            <p class="hidden interestDisplayed">Interest!</p>
             <a ng-click="current(newsNow)" href="{{ newsNow.link }}">
               <!-- <img -->
               <h3 class="articleTitle" id="title"> {{ newsNow.title }} </h3>
@@ -12,5 +12,5 @@
           <p class="articleDescription">{{ newsNow.description }}</p>
           <button ng-click="clickSave(newsNow)" class="clickSave" >Save</button>
         </div>
-        </div>
+    </div>
 </div>
