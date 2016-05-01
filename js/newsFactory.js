@@ -3,12 +3,24 @@
 module.exports = (function () {
     var service = angular.module('NewsService', []);
 
+    let Firebase = require('firebase');
+    let fireRequest = new Firebase('https://weightoftheworldnews.firebaseio.com/');
+
+    function Article(title, id, published){
+        this.title = title;
+        this.id = id;
+        this.published = published;
+
+        return this;
+    }
+
     service.factory('NewsService', ['$http', '$interval', function ($http, $interval) {
         let news = [];
         let newsIDs = [];
         let newsTitles = [];
         let save = [];
         let interests = [];
+
 
         return {
             fetchNews: function () {
@@ -60,12 +72,27 @@ module.exports = (function () {
             },
 
             clickSave: function (article) {
-                save.push(article);
-                console.log('these saved', save);
+                // save.push(article);
+                // console.log('these saved', save);
+                let title = article.title;
+                let id = article.id;
+                let published = article.published;
+
+                var savedArticle = new Article(title, id, published);
+                console.log(savedArticle);
+                var articleToSave = new Firebase('https://weightoftheworldnews.firebaseio.com/saved/' + savedArticle.id);
+                articleToSave.set(savedArticle, function(){
+                    console.log('New article saved');
+                });
                 },
 
             fetchSaved: function () {
-                return save;
+                let firePull = new Firebase('https://weightoftheworldnews.firebaseio.com/saved/');
+                firePull.once('value', function(bringThemIn){
+                    console.log(bringThemIn.val());
+                    return(bringThemIn.val());
+                });
+
             },
 
             addInterest: function (interest) {

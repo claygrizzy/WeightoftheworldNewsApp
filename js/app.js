@@ -18,6 +18,9 @@ mainApp.config(['$routeProvider', function($routeProvider) {
         .when('/saved', {
             controller: 'SavedViewController',
             templateUrl: 'pageviews/saved.html',
+        // })
+        // .otherwise({
+        //     redirectTo: '/main',
         });
 }]);
 
