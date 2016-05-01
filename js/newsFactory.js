@@ -9,6 +9,8 @@ module.exports = (function () {
         let newsTitles = [];
         let save = [];
         let interests = [];
+//        let common = [];
+//        let notCommon = [];
 
         return {
             fetchNews: function () {
@@ -21,7 +23,7 @@ module.exports = (function () {
                     }
                     for (let i = 0; i < response.data.stories.length; i++) {
                         response.data.stories[i].title = response.data.stories[i].title.toLowerCase();
-                        console.log(response.data.stories[i].title);
+                        //console.log(response.data.stories[i].title);
                         newsTitles.push(response.data.stories[i].title);
                     }
                     angular.copy(response.data.stories, news);
@@ -47,21 +49,22 @@ module.exports = (function () {
                 }, 100000);
             },
 
-            getNewsIDs: function () {
-                for (let i = 0; i < news.length; i++) {
-                    newsIDs.push(news.id[i]);
-                }
-                return newsIDs;
-            },
-
             getNews: function () {
                 return news;
+            },
+            
+            getTitles: function () {
+                return newsTitles;
+            },
+            
+            getInterests: function () {
+                return interests;
             },
 
             clickSave: function (article) {
                 save.push(article);
                 console.log('these saved', save);
-                },
+            },
 
             fetchSaved: function () {
                 return save;
@@ -71,10 +74,9 @@ module.exports = (function () {
                 interest = interest.toLowerCase();
                 interests.push(interest);
                 console.log(interests);
-            },
-
-            flagInterests: function () {
-                console.log('flagged');
+                console.log(interest);
+                
+                //return interest;
             },
 
             myInterests: function () {
@@ -96,3 +98,48 @@ module.exports = (function () {
 
 }]);
 }());
+
+
+//for (let i = 0; i < newsTitles.length; i++) {
+//    for (let j = 0; j < interests.length; j++) {
+//        if (newsTitles[i].indexOf(interests[j], 0) >= 0) {
+//            let index = newsIDs[i];
+//            console.log(index);
+//            let id = index.toString();
+//            console.log(id);
+//            document.getElementById(id).removeAttribute('hidden');
+////            console.log(index);
+////            console.log(newsTitles[index]);
+////            console.log(newsIDs[index]);
+////            common.push(newsTitles[i]);
+//         } else {
+//             console.log('this article doesn\'t mention any of your interests');
+//             /*
+//             let index = newsIDs[i];
+//             console.log(index);
+//             let id = index.toString();
+//             console.log(id);
+//             document.getElementById(id).setAttribute('hidden');
+//             */
+////             notCommon.push(newsTitles[i]);
+//                
+//         }
+////         console.log(common);
+////         console.log(notCommon);
+//    }
+//}
+//
+//            flagInterest: function (interest) {
+//                console.log(interest);
+//                for (let i = 0; i < newsTitles.length; i++) {
+//                    if (newsTitles[i].indexOf(interest, 0) >= 0) {
+//                        console.log(interest);
+//                        console.log(true);
+//                        return true;
+//                    } else {
+//                        console.log('no', interest);
+//                        console.log(false);
+//                        return false;
+//                    }
+//                }
+//            },
