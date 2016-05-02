@@ -75,10 +75,7 @@ module.exports = (function () {
             },
 
             clickSave: function (article) {
-                save.push(article);
-                console.log('these saved', save);
-                // save.push(article);
-                // console.log('these saved', save);
+
                 let title = article.title;
                 let id = article.id;
                 let published = article.published;
@@ -89,15 +86,20 @@ module.exports = (function () {
                 articleToSave.set(savedArticle, function(){
                     console.log('New article saved');
                 });
+                // save.push(article);
+                // console.log('these saved', save);
                 },
 
             fetchSaved: function () {
                 let firePull = new Firebase('https://weightoftheworldnews.firebaseio.com/saved/');
-                firePull.once('value', function(bringThemIn){
-                    console.log(bringThemIn.val());
-                    return(bringThemIn.val());
+                firePull.once('value', function(article){
+                    console.log(article.val());
+                    var data = article.val();
+                    // for( let i = 0; i< data.length; i++){
+                    save.push(Object.keys(data));
+                    console.log('saved?', save);
+                    //}
                 });
-
             },
 
             addInterest: function (interest) {
