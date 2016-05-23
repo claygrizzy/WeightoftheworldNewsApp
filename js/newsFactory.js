@@ -96,7 +96,7 @@ module.exports = (function () {
                     console.log(article.val());
                     var data = article.val();
                     // for( let i = 0; i< data.length; i++){
-                    save.push(Object.keys(data));
+                    save.push(data);
                     console.log('saved?', save);
                     //}
                 });
