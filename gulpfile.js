@@ -35,7 +35,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('images', function() {
-   return gulp.src('./imges/*')
+   return gulp.src('./images/*')
     .pipe(gulp.dest('./public/images/'));
 });
 
@@ -43,4 +43,5 @@ gulp.task('watch', function() {
    gulp.watch('./*html', ['html']);
    gulp.watch('./scss/*.scss', ['css']);
    gulp.watch('./js/*.js', ['js']);
+   gulp.watch('./images/*', ['images']);
 });

@@ -18,9 +18,9 @@ mainApp.config(['$routeProvider', function($routeProvider) {
         .when('/saved', {
             controller: 'SavedViewController',
             templateUrl: 'pageviews/saved.html',
-        // })
-        // .otherwise({
-        //     redirectTo: '/main',
+        })
+        .otherwise({
+            redirectTo: '/main',
         });
 }]);
 
@@ -56,9 +56,9 @@ mainApp.controller('InterestViewController', ['$scope', 'NewsService', function 
 
     $scope.addNewInterest = function() {
         NewsService.addInterest(document.getElementById('input').value);
-        
+
     };
-    
+
 //    $scope.flagNewInterest = function (interest) {
 //        let zebra = NewsService.addInterest(interest);
 //        NewsService.flagInterest(zebra);
@@ -69,7 +69,7 @@ mainApp.controller('InterestViewController', ['$scope', 'NewsService', function 
     $scope.removeThisInterest = function (interest) {
         NewsService.removeInterest(interest);
     };
-    
+
     //NewsService.flagInterest();
 
 }]);
