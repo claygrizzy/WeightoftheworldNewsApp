@@ -3,8 +3,8 @@
 module.exports = (function () {
     var service = angular.module('NewsService', []);
 
-    let Firebase = require('firebase');
-    let fireRequest = new Firebase('https://weightoftheworldnews.firebaseio.com/');
+    var Firebase = require('firebase');
+    var fireRequest = new Firebase('https://weightoftheworldnews.firebaseio.com/');
 
     function Article(title, id, published){
         this.title = title;
@@ -15,13 +15,13 @@ module.exports = (function () {
     }
 
     service.factory('NewsService', ['$http', '$interval', function ($http, $interval) {
-        let news = [];
-        let newsIDs = [];
-        let newsTitles = [];
-        let save = [];
-        let interests = [];
-//        let common = [];
-//        let notCommon = [];
+        var news = [];
+        var newsIDs = [];
+        var newsTitles = [];
+        var save = [];
+        var interests = [];
+//        var common = [];
+//        var notCommon = [];
 
 
         return {
@@ -30,14 +30,14 @@ module.exports = (function () {
                     method: 'GET',
                     url: 'http://chat.queencityiron.com/api/news/latest',
                 }).then(function (response) {
-                    for (let i = 0; i < response.data.stories.length; i++) {
+                    for (var i = 0; i < response.data.stories.length; i++) {
                         newsIDs.push(response.data.stories[i].id);
                     }
-                    for (let i = 0; i < response.data.stories.length; i++) {
-                        response.data.stories[i].title = response.data.stories[i].title.toLowerCase();
+                    for (var j = 0; j < response.data.stories.length; j++) {
+                        response.data.stories[j].title = response.data.stories[j].title.toLowerCase();
 
                         // console.log(response.data.stories[i].title);
-                        newsTitles.push(response.data.stories[i].title);
+                        newsTitles.push(response.data.stories[j].title);
                     }
                     angular.copy(response.data.stories, news);
                     //console.log(news);
@@ -49,7 +49,7 @@ module.exports = (function () {
                         method: 'GET',
                         url: 'http://chat.queencityiron.com/api/news/latest',
                     }).then(function (response) {
-                        for (let i = 0; i < response.data.stories.length; i++) {
+                        for (var i = 0; i < response.data.stories.length; i++) {
                             if (newsIDs.includes(response.data.stories[i].id) === false) {
                                 news.push(response.data.stories[i]);
                                 newsIDs.push(response.data.stories[i].id);
@@ -76,9 +76,9 @@ module.exports = (function () {
 
             clickSave: function (article) {
 
-                let title = article.title;
-                let id = article.id;
-                let published = article.published;
+                var title = article.title;
+                var id = article.id;
+                var published = article.published;
 
                 var savedArticle = new Article(title, id, published);
                 console.log(savedArticle);
@@ -91,11 +91,11 @@ module.exports = (function () {
                 },
 
             fetchSaved: function () {
-                let firePull = new Firebase('https://weightoftheworldnews.firebaseio.com/saved/');
+                var firePull = new Firebase('https://weightoftheworldnews.firebaseio.com/saved/');
                 firePull.once('value', function(article){
                     console.log(article.val());
                     var data = article.val();
-                    // for( let i = 0; i< data.length; i++){
+                    // for( var i = 0; i< data.length; i++){
                     save.push(data);
                     console.log('saved?', save);
                     //}
@@ -132,12 +132,12 @@ module.exports = (function () {
 }());
 
 
-//for (let i = 0; i < newsTitles.length; i++) {
-//    for (let j = 0; j < interests.length; j++) {
+//for (var i = 0; i < newsTitles.length; i++) {
+//    for (var j = 0; j < interests.length; j++) {
 //        if (newsTitles[i].indexOf(interests[j], 0) >= 0) {
-//            let index = newsIDs[i];
+//            var index = newsIDs[i];
 //            console.log(index);
-//            let id = index.toString();
+//            var id = index.toString();
 //            console.log(id);
 //            document.getElementById(id).removeAttribute('hidden');
 ////            console.log(index);
@@ -147,9 +147,9 @@ module.exports = (function () {
 //         } else {
 //             console.log('this article doesn\'t mention any of your interests');
 //             /*
-//             let index = newsIDs[i];
+//             var index = newsIDs[i];
 //             console.log(index);
-//             let id = index.toString();
+//             var id = index.toString();
 //             console.log(id);
 //             document.getElementById(id).setAttribute('hidden');
 //             */
@@ -163,7 +163,7 @@ module.exports = (function () {
 //
 //            flagInterest: function (interest) {
 //                console.log(interest);
-//                for (let i = 0; i < newsTitles.length; i++) {
+//                for (var i = 0; i < newsTitles.length; i++) {
 //                    if (newsTitles[i].indexOf(interest, 0) >= 0) {
 //                        console.log(interest);
 //                        console.log(true);

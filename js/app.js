@@ -3,7 +3,7 @@
 require('./filters');
 require('./newsFactory');
 
-let mainApp = angular.module('WorldNewsApp', ['ngRoute', 'FilterService', 'NewsService']);
+var mainApp = angular.module('WorldNewsApp', ['ngRoute', 'FilterService', 'NewsService']);
 
 mainApp.config(['$routeProvider', function($routeProvider) {
     $routeProvider
@@ -33,7 +33,7 @@ mainApp.controller('MainViewController', ['$scope', 'NewsService', function ($sc
     $scope.breakingNews = NewsService.getNews();
     $scope.interesting = function (title) {
         title = title.toLowerCase();
-        for (let i = 0; i < NewsService.getInterests().length; i++) {
+        for (var i = 0; i < NewsService.getInterests().length; i++) {
                     if (title.indexOf(NewsService.getInterests()[i], 0) >= 0) {
                         console.log(title);
                         console.log(NewsService.getInterests()[i]);
@@ -60,7 +60,7 @@ mainApp.controller('InterestViewController', ['$scope', 'NewsService', function 
     };
 
 //    $scope.flagNewInterest = function (interest) {
-//        let zebra = NewsService.addInterest(interest);
+//        var zebra = NewsService.addInterest(interest);
 //        NewsService.flagInterest(zebra);
 //    };
 
