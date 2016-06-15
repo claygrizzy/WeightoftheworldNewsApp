@@ -20,9 +20,6 @@ module.exports = (function () {
         var newsTitles = [];
         var save = [];
         var interests = [];
-//        var common = [];
-//        var notCommon = [];
-
 
         return {
             fetchNews: function () {
@@ -36,13 +33,10 @@ module.exports = (function () {
                     for (var j = 0; j < response.data.stories.length; j++) {
                         response.data.stories[j].title = response.data.stories[j].title.toLowerCase();
 
-                        // console.log(response.data.stories[i].title);
                         newsTitles.push(response.data.stories[j].title);
                     }
                     angular.copy(response.data.stories, news);
-                    //console.log(news);
-                    //console.log(newsIDs);
-                    //console.log(newsTitles);
+
                 });
                 $interval(function () {
                     $http({
@@ -93,12 +87,11 @@ module.exports = (function () {
             fetchSaved: function () {
                 var firePull = new Firebase('https://weightoftheworldnews.firebaseio.com/saved/');
                 firePull.once('value', function(article){
-                    console.log(article.val());
+                    // console.log(article.val());
                     var data = article.val();
-                    // for( var i = 0; i< data.length; i++){
-                    save.push(data);
+                    // save.push(data);
+                    angular.copy(data, save);
                     console.log('saved?', save);
-                    //}
                 });
             },
 
@@ -130,48 +123,3 @@ module.exports = (function () {
 
 }]);
 }());
-
-
-//for (var i = 0; i < newsTitles.length; i++) {
-//    for (var j = 0; j < interests.length; j++) {
-//        if (newsTitles[i].indexOf(interests[j], 0) >= 0) {
-//            var index = newsIDs[i];
-//            console.log(index);
-//            var id = index.toString();
-//            console.log(id);
-//            document.getElementById(id).removeAttribute('hidden');
-////            console.log(index);
-////            console.log(newsTitles[index]);
-////            console.log(newsIDs[index]);
-////            common.push(newsTitles[i]);
-//         } else {
-//             console.log('this article doesn\'t mention any of your interests');
-//             /*
-//             var index = newsIDs[i];
-//             console.log(index);
-//             var id = index.toString();
-//             console.log(id);
-//             document.getElementById(id).setAttribute('hidden');
-//             */
-////             notCommon.push(newsTitles[i]);
-//
-//         }
-////         console.log(common);
-////         console.log(notCommon);
-//    }
-//}
-//
-//            flagInterest: function (interest) {
-//                console.log(interest);
-//                for (var i = 0; i < newsTitles.length; i++) {
-//                    if (newsTitles[i].indexOf(interest, 0) >= 0) {
-//                        console.log(interest);
-//                        console.log(true);
-//                        return true;
-//                    } else {
-//                        console.log('no', interest);
-//                        console.log(false);
-//                        return false;
-//                    }
-//                }
-//            },

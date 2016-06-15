@@ -1,13 +1,13 @@
 <div class="page-view" id="savedpage">
     <h2>Your Saved News:</h2>
     <div class="newsStoryRepeat" ng-repeat="savedNews in savedCollection | orderBy:'-'">
-    <p class="hidden interestDisplayed">Interest!</p>
-      <a ng-click="current(newsNow)" href="{{ savedNews.link }}" >
-      <h3 class="articleTitle"> {{ savedNews.title }} </h3>
-    </a>
-      <!-- <img -->
-      <p class="published">{{ savedNews.published | fromNow }}</p>
-      <!-- <p class="articleDescription">{{savedNews.description}}</p> -->
-      <button class="clickRemove">Remove</button>
+        <p class="hidden interestDisplayed">Interest!</p>
+        <a ng-click="current(newsNow)" href="{{ savedNews.link }}" >
+            <h3 class="articleTitle"> {{ savedNews.title }} </h3>
+        </a>
+        <!-- <img -->
+        <p class="published">{{ savedNews.published | fromNow }}</p>
+        <!-- <p class="articleDescription">{{savedNews.description}}</p> -->
+        <button class="clickRemove">Remove</button>
     </div>
 </div>

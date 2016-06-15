@@ -59,22 +59,15 @@ mainApp.controller('InterestViewController', ['$scope', 'NewsService', function 
 
     };
 
-//    $scope.flagNewInterest = function (interest) {
-//        var zebra = NewsService.addInterest(interest);
-//        NewsService.flagInterest(zebra);
-//    };
-
     $scope.myInterests = NewsService.myInterests();
 
     $scope.removeThisInterest = function (interest) {
         NewsService.removeInterest(interest);
     };
-
     //NewsService.flagInterest();
-
 }]);
 
-mainApp.controller('SavedViewController', ['$scope', 'NewsService', function ($scope, NewsService) {
+mainApp.controller('SavedViewController', ['$scope', '$http', 'NewsService', function ($scope, $http, NewsService) {
 
     $scope.savedCollection = NewsService.fetchSaved();
 
